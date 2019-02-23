@@ -3,5 +3,9 @@
 @import "./phoenix.css";
 
 body {
-  font-size: 30px;
+  font-size: 26px;
+}
+
+li {
+  white-space: pre;
 }

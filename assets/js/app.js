@@ -25,6 +25,7 @@ let socket = new Socket("/socket", {
 let channel = socket.channel("room:lobby", {});
 let presence = new Presence(channel);
 const main = document.querySelector("main[role=main]");
+const messageList = document.getElementById("message-list");
 
 function renderOnlineUsers(presence) {
   console.log("joined presence");
@@ -51,5 +52,13 @@ channel.on("shout", payload => {
   let messageItem = document.createElement("li");
   const formattedNow = new Date().toLocaleTimeString("en-US");
   messageItem.innerText = `${payload.user} @ ${formattedNow}: ${payload.body}`;
-  main.appendChild(messageItem);
+  messageList.appendChild(messageItem);
+});
+
+const submitButton = document.getElementById("send-message");
+const messageInput = document.getElementById("message");
+submitButton.addEventListener("click", () => {
+  if (messageInput.value.length > 0) {
+    channel.push("emote", { body: messageInput.value });
+  }
 });

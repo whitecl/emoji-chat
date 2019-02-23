@@ -1,6 +1,7 @@
 defmodule ChatWeb.RoomChannel do
   use ChatWeb, :channel
   alias ChatWeb.Presence
+  alias ChatWeb.Emoting
 
   def join("room:lobby", payload, socket) do
     if authorized?(payload) do
@@ -29,6 +30,11 @@ defmodule ChatWeb.RoomChannel do
   # broadcast to everyone in the current topic (room:lobby).
   def handle_in("shout", payload, socket) do
     broadcast socket, "shout", %{ body: payload["body"], user: socket.assigns.user_id }
+    {:noreply, socket}
+  end
+
+  def handle_in("emote", payload, socket) do
+    broadcast socket, "shout", %{ body: Emoting.emojify_message(payload["body"]), user: socket.assigns.user_id }
     {:noreply, socket}
   end
 
