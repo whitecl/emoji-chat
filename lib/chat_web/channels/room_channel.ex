@@ -33,6 +33,11 @@ defmodule ChatWeb.RoomChannel do
     {:noreply, socket}
   end
 
+  def handle_in("join", payload, socket) do
+    broadcast socket, "shout", %{ body: Emoting.user_joined, user: socket.assigns.user_id }
+    {:noreply, socket}
+  end
+
   def handle_in("emote", payload, socket) do
     broadcast socket, "shout", %{ body: Emoting.emojify_message(payload["body"]), user: socket.assigns.user_id }
     {:noreply, socket}

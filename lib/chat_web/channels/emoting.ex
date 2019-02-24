@@ -10,6 +10,10 @@ defmodule ChatWeb.Emoting do
     |> Enum.join("")
   end
 
+  def user_joined do
+    "👋👋👋👋👋👋"
+end
+
   def emojify_message(message) do
     String.graphemes(message)
     |> Enum.map(fn(char) -> 

@@ -46,12 +46,11 @@ socket.connect();
 
 channel.join();
 
-channel.push("shout", { body: "Joined the chat!" });
+channel.push("join");
 
 channel.on("shout", payload => {
   let messageItem = document.createElement("li");
-  const formattedNow = new Date().toLocaleTimeString("en-US");
-  messageItem.innerText = `${payload.user} @ ${formattedNow}: ${payload.body}`;
+  messageItem.innerHTML = `${payload.user}<b>:</b> ${payload.body}`;
   messageList.appendChild(messageItem);
 });
 
