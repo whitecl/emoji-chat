@@ -1,9 +1,8 @@
 defmodule ChatWeb.Emoting do
   require Logger
 
-  @emojis String.split(
-    "🐮😀🐹🦊🐤🐝🐊🐆🐓🌴❄️🍋🌯🥪🍿🥜🍺🥤🥢⚽️🏀🏈🏅🎮🚗🚦",
-    ""
+  @emojis String.graphemes(
+    "🐮🐹🦊🐤🐝🐊🐆🐓🌴❄️🍋🌯🥪🍿🥜🍺🥤🥢⚽️🏀🏈🏅🎮🚗🚦"
   )
 
   def generate_user_id do
