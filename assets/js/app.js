@@ -38,10 +38,12 @@ channel.on("shout", payload => {
   messageList.appendChild(messageItem);
 });
 
-const submitButton = document.getElementById("send-message");
+const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message");
-submitButton.addEventListener("click", () => {
+messageForm.addEventListener("click", event => {
+  event.preventDefault();
   if (messageInput.value.length > 0) {
     channel.push("emote", { body: messageInput.value });
+    messageInput.value = "";
   }
 });
