@@ -17,6 +17,18 @@ config :chat, ChatWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :chat, ChatWeb.Endpoint,
+  http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
+  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  server: true
+
+config :chat, Chat.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  ssl: true,
+  pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections.
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -65,7 +77,3 @@ config :logger, level: :info
 #
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.
-
-# Finally import the config/prod.secret.exs which should be versioned
-# separately.
-import_config "prod.secret.exs"
