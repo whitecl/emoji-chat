@@ -36,6 +36,7 @@ channel.on("shout", payload => {
   let messageItem = document.createElement("li");
   messageItem.innerHTML = `${payload.user}<b>:</b> ${payload.body}`;
   messageList.appendChild(messageItem);
+  window.scrollTo(0, document.body.scrollHeight);
 });
 
 const messageForm = document.getElementById("message-form");

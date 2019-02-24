@@ -2,11 +2,11 @@
 
 body {
   font-size: 26px;
+  margin-bottom: 80px;
 }
 
 ul {
   list-style: none;
-  margin-bottom: 80px;
 }
 
 li {
