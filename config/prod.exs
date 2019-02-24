@@ -18,7 +18,7 @@ use Mix.Config
 config :logger, level: :info
 
 config :chat, ChatWeb.Endpoint,
-  http: [port: {:system, System.get_env("PORT")}], # Possibly not needed, but doesn't hurt
+  http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
   server: true
