@@ -1,11 +1,43 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
-
 body {
   font-size: 26px;
 }
 
+ul {
+  list-style: none;
+  margin-bottom: 80px;
+}
+
 li {
   white-space: pre;
+}
+
+.send-box {
+  position: fixed;
+  bottom: 0px;
+  height: 50px;
+  width: 100%;
+  background-color: blue;
+  padding: 15px 0px;
+}
+
+.send-flex {
+  display: flex;
+}
+
+input {
+  padding: 10px 5px;
+  margin-right: 10px;
+  margin-left: auto;
+  width: 90%;
+}
+
+button {
+  font-size: 30px;
+  padding-left: 13px;
+  padding-right: 10px;
+  text-align: center;
+  background-color: white;
+  margin-right: auto;
 }

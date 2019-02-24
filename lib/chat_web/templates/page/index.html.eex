@@ -1,3 +1,7 @@
 <ul id="message-list"></ul>
-<input id="message"/>
-<button type="button" id="send-message">📨</button>
+<div class="send-box">
+  <div class="send-flex">
+    <input id="message"/>
+    <button type="button" id="send-message">📨</button>
+  </div>
+</div>
