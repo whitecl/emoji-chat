@@ -12,13 +12,18 @@ defmodule ChatWeb.Emoting do
 
   def user_joined do
     "👋👋👋👋👋👋"
-end
+  end
+
+  def get_character(input = " ") do
+    "   "
+  end
+  def get_character(input) do
+    Enum.random(@emojis)
+  end
 
   def emojify_message(message) do
     String.graphemes(message)
-    |> Enum.map(fn(char) -> 
-      if (char == " "), do: "   ", else: Enum.random(@emojis)
-    end)
+    |> Enum.map(&get_character/1)
     |> Enum.join("")
   end
 end
