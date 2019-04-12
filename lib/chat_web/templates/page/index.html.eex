@@ -1,3 +1,4 @@
+<div id="react-root"></div>
 <ul id="message-list"></ul>
 <div class="send-box">
   <form id="message-form" class="send-flex">
