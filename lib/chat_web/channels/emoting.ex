@@ -1,12 +1,14 @@
 defmodule ChatWeb.Emoting do
   require Logger
 
-  @emojis String.graphemes(
-    "🐮🦆🐹🦊🐤🐝🐊🐆🐓🌴❄️🍋🌯🥪🍿🥜🍺🥤🥢⚽️🏀🏈🏅🎮🚗🚦"
-  )
+  @emojis String.split(
+            "🐮🦆🐹🦊🐤🐝🐊🐆🐓🌴❄️🍋🌯🥪🍿🥜🍺🥤🥢⚽️🏀🏈🏅🎮🚗🚦",
+            "",
+            trim: true
+          )
 
   def generate_user_id do
-    Enum.map(1..2, fn(_) -> [Enum.random(@emojis)] end)
+    Enum.map(1..2, fn _ -> [Enum.random(@emojis)] end)
     |> Enum.join("")
   end
 
@@ -14,15 +16,16 @@ defmodule ChatWeb.Emoting do
     "👋👋👋👋👋👋"
   end
 
-  def get_character(input = " ") do
+  def get_character(_input = " ") do
     "   "
   end
-  def get_character(input) do
+
+  def get_character(_input) do
     Enum.random(@emojis)
   end
 
   def emojify_message(message) do
-    String.graphemes(message)
+    String.split(message, "", trim: true)
     |> Enum.map(&get_character/1)
     |> Enum.join("")
   end
